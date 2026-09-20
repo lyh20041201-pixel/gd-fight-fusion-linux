@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "repository": "lyh20041201-pixel/gd-fight-fusion-linux",
+  "tag": "linux-resume-20260920-v2",
+  "archive": {
+    "name": "fight_fusion_linux_20260920_v2.tar",
+    "bytes": 11346401280,
+    "sha256": "19436a2844bbfe9de4fa68ca7fc3e042239cf912f1db9c39dee325532181c029"
+  },
+  "parts": [
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-001-of-022",
+      "bytes": 536870912,
+      "sha256": "433ff4c8d4ea960732c7b097be20e14cb92a6c6dd98a8eeb72f39d450cf8c39c"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-002-of-022",
+      "bytes": 536870912,
+      "sha256": "ccce4aaa5329f63d964ec3381091e4c911dabd5d21ee8b752f700e0ac7eb5b61"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-003-of-022",
+      "bytes": 536870912,
+      "sha256": "01e24c7bbc992f8079dc26ed703e04cd6385a026da59f48d5c602a5f00763751"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-004-of-022",
+      "bytes": 536870912,
+      "sha256": "1afbce62a233f55a43f120d4fda8faf262efd4e1c6bfeed1b48b31482bdfb3c0"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-005-of-022",
+      "bytes": 536870912,
+      "sha256": "400bc79c7a83215bb977ffe935b4527f08d5aca41273a29877ef2aef4416c32f"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-006-of-022",
+      "bytes": 536870912,
+      "sha256": "6143621b5b7f0e61c5b53dcaeac2d5bc4422bada60d766903f4b8ddf0139a229"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-007-of-022",
+      "bytes": 536870912,
+      "sha256": "531692007f44a50b224492b4d218d3344d90499f39d9c2c1fc8a4c3ccb5af146"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-008-of-022",
+      "bytes": 536870912,
+      "sha256": "3993085b8880a0c8f06fe0dc4b365646fc32f6bcc1e7d63903c290a6eb94a770"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-009-of-022",
+      "bytes": 536870912,
+      "sha256": "0d687143889b114039d128b646df2c8d3e43f8dd6ce3337042003700697786bd"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-010-of-022",
+      "bytes": 536870912,
+      "sha256": "7b0780f21ad8914c4ca0d5787fdf618e060178068c626733405cba9510949164"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-011-of-022",
+      "bytes": 536870912,
+      "sha256": "04fd539bc39fe3e3464535e9e85cf70645b1db87016c64fc9e36520e25bfacc9"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-012-of-022",
+      "bytes": 536870912,
+      "sha256": "1ab10f95433f619deb37d44dc3877474b619e003f9e90b17229b3c08de0b4c54"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-013-of-022",
+      "bytes": 536870912,
+      "sha256": "64bdb491ee76a7c19754c883b6d726f302e328c1faaa95374af4cbe0f1cadb7a"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-014-of-022",
+      "bytes": 536870912,
+      "sha256": "ed6e7eb41b80e799d5532fbaf3ca5d7035160c82b93dcb8bb7d4beea7307dde4"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-015-of-022",
+      "bytes": 536870912,
+      "sha256": "d95eaac29677b8e6c73104569faae199cd9077503b4b81386386398a5e0e4225"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-016-of-022",
+      "bytes": 536870912,
+      "sha256": "6a0d5b428a0ac68d27f4faa13a21a6d9d50e74d902582222fdba14292d35a059"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-017-of-022",
+      "bytes": 536870912,
+      "sha256": "223c17a338d6109d0d506f5a7240155b37e6e7d7f3d489fb35e2577815978a2c"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-018-of-022",
+      "bytes": 536870912,
+      "sha256": "f65e04acdb298e021a31cd9d18a72eae6918e19b42262c6509ded8bb4e2e6a48"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-019-of-022",
+      "bytes": 536870912,
+      "sha256": "ecb254a35ad2c0a43b55ee1a61ed19be720858d195dd6b01b2b1cf5fb9054e5b"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-020-of-022",
+      "bytes": 536870912,
+      "sha256": "685330578f0916fc5a99a135852a18bcc9bbf6be034adee50a332822dc153054"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-021-of-022",
+      "bytes": 536870912,
+      "sha256": "1ad0bd6a67324d1beac38644c945a5d2074ef2cc09ddbcfbcf69defdece30b6d"
+    },
+    {
+      "name": "fight-fusion-linux-20260920-v2.tar.part-022-of-022",
+      "bytes": 72112128,
+      "sha256": "9d1ec5be55e221a8e69e14fd9e06a0370c0311c9c9c0dbca310a8babc640c201"
+    }
+  ],
+  "source_videos": 3964,
+  "resume": {
+    "branch": "skeleton_random",
+    "seed": 42,
+    "completed_epochs": 8,
+    "next_epoch": 9,
+    "saved_cursor": 401,
+    "train_videos": 2819
+  },
+  "target_gpu_validation": "required on Linux server"
+}

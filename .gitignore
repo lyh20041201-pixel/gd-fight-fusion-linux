@@ -1,0 +1,13 @@
+.training/
+.downloads/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.part
+*.tar
+*.pt
+*.pth
+*.mp4
+.env
+.venv*/
+controller.log

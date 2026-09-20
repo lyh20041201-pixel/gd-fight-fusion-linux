@@ -1,0 +1,78 @@
+{
+  "commit": "f2bf3a6b08e2e8dec744692d64efdb187fd6719a",
+  "upstream": "https://github.com/kennymckormick/pyskl",
+  "file": "E:\\GD\\backend\\vision\\stgcnpp_backbone.py",
+  "file_sha256": "295eaf49db47a895409c2f231fcd895f4aeca05c193e61d24c860c50e5e248d3",
+  "verbatim_bodies": [
+    {
+      "source": "pyskl/utils/graph.py",
+      "symbol": "k_adjacency",
+      "body_sha256": "4654add410f4e383b1d6587a7b34911f77127dec1c6faf8539e98fe0febcf9fc"
+    },
+    {
+      "source": "pyskl/utils/graph.py",
+      "symbol": "edge2mat",
+      "body_sha256": "996a412145300bebfb48098b06b902de9b397f1b02243ef97bd9d6f4fb928676"
+    },
+    {
+      "source": "pyskl/utils/graph.py",
+      "symbol": "normalize_digraph",
+      "body_sha256": "1e72faa55517a67e73d496181021aba6475724fc6db6ef0cee1eccf37a7b4820"
+    },
+    {
+      "source": "pyskl/utils/graph.py",
+      "symbol": "get_hop_distance",
+      "body_sha256": "27e39488312af9e2f66c33235636663dad580f85f562016491c2173bf2a7d123"
+    },
+    {
+      "source": "pyskl/utils/graph.py",
+      "symbol": "Graph",
+      "body_sha256": "221be7d080385f31d8819343909f744a29b8b07a934bab2ab098096d7fe24c0d"
+    },
+    {
+      "source": "pyskl/models/gcns/utils/init_func.py",
+      "symbol": "conv_branch_init",
+      "body_sha256": "0a91f47efaa0a1bdcabb85fb05275866f27a6ef59730c8c557fbdba8b8c5e63b"
+    },
+    {
+      "source": "pyskl/models/gcns/utils/init_func.py",
+      "symbol": "conv_init",
+      "body_sha256": "f03c2c36e96e3b6498af61710d042c24d84f9bc93b0d647ec6b9a8277da62dbe"
+    },
+    {
+      "source": "pyskl/models/gcns/utils/init_func.py",
+      "symbol": "bn_init",
+      "body_sha256": "776ee1a07627b5eee2b50986011baeadc13a7be97fae371b006d2184e8a5cff7"
+    },
+    {
+      "source": "pyskl/models/gcns/utils/gcn.py",
+      "symbol": "unit_gcn",
+      "body_sha256": "c6fec6e48bf36238e4637d5f446b8fd2c1519828cd3167837ac0e1880aa8b28d"
+    },
+    {
+      "source": "pyskl/models/gcns/utils/tcn.py",
+      "symbol": "unit_tcn",
+      "body_sha256": "a98158a282f003f20b1e34661a7fa3bbb2ac4617259e59a73b62eb8de63dbe77"
+    },
+    {
+      "source": "pyskl/models/gcns/utils/tcn.py",
+      "symbol": "mstcn",
+      "body_sha256": "a7410acc7aea6c85f3cecb5452e9f98e148691f3c61264b243dc384d9b70de7e"
+    },
+    {
+      "source": "pyskl/models/gcns/stgcn.py",
+      "symbol": "STGCNBlock",
+      "body_sha256": "253465e83daab7f1318e23b9bf32fa08ba36d6e345b1cf4ed5e22237e655b373"
+    },
+    {
+      "source": "pyskl/models/gcns/stgcn.py",
+      "symbol": "STGCN",
+      "body_sha256": "d132415b39cff16c5e2289f4c6cb51c9a493e637a72a84970e0ac87242cb91c3"
+    }
+  ],
+  "changes": [
+    "framework imports/registry removed",
+    "BN/ReLU constructors use torch directly",
+    "checkpoint loader requires local file and weights_only=True"
+  ]
+}

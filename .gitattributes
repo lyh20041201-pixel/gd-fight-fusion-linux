@@ -1,0 +1,3 @@
+* text=auto eol=lf
+# Preserve the exact exported source bytes for audit; this snapshot is not executed.
+snapshot/** -text
