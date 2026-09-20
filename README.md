@@ -9,7 +9,7 @@ GitHub 保存代码和 Release 文件；训练在你的 Linux 服务器运行。
 ## 直接交给另一端 Codex 的话
 
 > 请阅读这个仓库的 AGENTS.md 和 README.md，在当前 Linux GPU 服务器上执行自动续训。
-> 先检查 NVIDIA 显卡、Python 3.12、磁盘空间和 GitHub 私有仓库访问权限；随后运行
+> 先检查 NVIDIA 显卡、Python 3.12、磁盘空间和网络；随后运行
 > `python3 tools/bootstrap.py --start --workdir /实际有足够空间的目录/gd-fight-training --gpu 0`。
 > 持续检查控制器日志和训练状态，直到确认正式训练日志或进度实际推进后再报告已启动。
 > 不修改封存的数据划分、训练超参数、源码、校验哈希或断点，不重训已完成的 RGB 分支。
@@ -17,7 +17,7 @@ GitHub 保存代码和 Release 文件；训练在你的 Linux 服务器运行。
 
 ## 1. Linux 服务器先准备
 
-需要 Linux x86_64、可访问的 NVIDIA GPU、Python 3.12（含 venv）、`git`、GitHub CLI `gh`、`tmux`、`bash`。
+需要 Linux x86_64、可访问的 NVIDIA GPU、Python 3.12（含 venv）、`git`、`tmux`、`bash`。
 本实验固定 PyTorch 2.5.1+cu121；显卡型号未知，所以会在目标机器实际验证 CUDA 和四分支训练。
 
 - 建议至少 32 GiB 系统内存，启动时实际可用内存至少 8 GiB，容器内还会检查 cgroup 内存限制。
@@ -27,18 +27,14 @@ GitHub 保存代码和 Release 文件；训练在你的 Linux 服务器运行。
 - 无桌面的 Ubuntu/Debian 若缺少 OpenCV 系统库，需要管理员提供 `libgl1`、`libglib2.0-0`。
 - 首次安装依赖和下载需要联网；模型训练本身保持原离线策略。
 
-仓库为私有仓库，Linux 端必须登录有读取权限的 GitHub 账号。已有登录可直接使用：
+仓库及训练包已公开，下载无需 GitHub 账号、邀请、Token 或 GitHub CLI。直接克隆：
 
 ```bash
-gh auth status
-# 尚未登录时，由账号本人完成浏览器授权：
-gh auth login --hostname github.com --git-protocol https --web
-
-gh repo clone lyh20041201-pixel/gd-fight-fusion-linux
+git clone https://github.com/lyh20041201-pixel/gd-fight-fusion-linux.git
 cd gd-fight-fusion-linux
 ```
 
-CLI 安装说明：[官方 GitHub CLI](https://cli.github.com/)。
+`git clone` 下载代码和操作说明；下面的启动命令会自动下载 10.57 GiB 的 Release 训练包。
 
 ## 2. 一条命令下载、校验、配置并继续训练
 
@@ -52,8 +48,8 @@ python3 tools/bootstrap.py --start \
 
 它会启动独立的 `tmux` 会话 `gd-fight-train`，依次执行：
 
-1. 检查 Python、GPU、GitHub 登录、磁盘和依赖命令。
-2. 从固定 Release 下载训练包分卷。已下载且校验通过的分卷会复用。
+1. 检查 Python、GPU、磁盘和依赖命令。
+2. 从固定公开 Release 匿名下载训练包分卷。已下载且校验通过的分卷会复用。
 3. 校验每个分卷和合并包的 SHA256，安全解包，再校验全部封存文件。
 4. 创建独立 `.venv-linux`，安装当前训练所使用的依赖版本。
 5. 在独立输出目录用少量真实训练/验证视频运行四分支 GPU 冒烟检查。

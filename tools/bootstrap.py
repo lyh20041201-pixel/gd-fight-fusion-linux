@@ -14,6 +14,8 @@ import subprocess
 import sys
 import tarfile
 import time
+from urllib.parse import quote
+from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 GIB = 1024 ** 3
@@ -59,6 +61,44 @@ def manifest():
 
 def checked_file(path, entry):
     return path.is_file() and path.stat().st_size == entry['bytes'] and sha(path) == entry['sha256']
+
+
+def asset_url(specification, name):
+    repository = specification['repository']
+    if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', repository):
+        raise ValueError('Invalid repository name')
+    return (f'https://github.com/{repository}/releases/download/'
+            f"{quote(specification['tag'], safe='')}/{quote(name, safe='')}")
+
+
+def download_asset(url, destination, expected):
+    """Stream a public asset without credentials; expose only verified complete files."""
+    if checked_file(destination, expected):
+        return
+    temporary = destination.with_name(destination.name + '.downloading')
+    request = Request(url, headers={'User-Agent': 'gd-fight-linux-bootstrap/1',
+                                    'Accept': 'application/octet-stream'})
+    received = 0
+    digest = hashlib.sha256()
+    last_report = time.monotonic()
+    try:
+        with urlopen(request, timeout=120) as response, temporary.open('wb') as output:
+            while block := response.read(4 * 1024**2):
+                received += len(block)
+                if received > expected['bytes']:
+                    raise ValueError('Downloaded asset exceeds expected size: ' + destination.name)
+                output.write(block)
+                digest.update(block)
+                if time.monotonic() - last_report >= 30:
+                    print(f'DOWNLOAD {destination.name}: {received}/{expected["bytes"]} bytes', flush=True)
+                    last_report = time.monotonic()
+        if received != expected['bytes'] or digest.hexdigest() != expected['sha256']:
+            raise ValueError('Downloaded asset size/hash mismatch: ' + destination.name)
+        temporary.replace(destination)
+        print('VERIFIED', destination.name, flush=True)
+    except BaseException:
+        temporary.unlink(missing_ok=True)
+        raise
 
 
 def run(command, **kwargs):
@@ -130,11 +170,10 @@ def extract(archive, workdir):
 def prerequisites(workdir, require_tmux=True):
     if sys.platform != 'linux' or platform.machine() not in ('x86_64', 'AMD64'):
         raise RuntimeError('This training continuation requires Linux x86_64')
-    for executable in ('gh', 'nvidia-smi', 'bash', *(['tmux'] if require_tmux else [])):
+    for executable in ('nvidia-smi', 'bash', *(['tmux'] if require_tmux else [])):
         if not shutil.which(executable):
             raise RuntimeError('Required command is missing: ' + executable)
     python = python312()
-    run(['gh', 'auth', 'status'])
     run(['nvidia-smi', '--query-gpu=name,memory.total,driver_version', '--format=csv'])
     workdir.mkdir(parents=True, exist_ok=True)
     if not (workdir / 'fight_fusion_linux').exists() and shutil.disk_usage(workdir).free < 285 * GIB:
@@ -171,21 +210,11 @@ def worker(args, specification):
                 else:
                     downloads = workdir / 'downloads'
                     downloads.mkdir(exist_ok=True)
-                    # This call also verifies access to the private release before transfer.
-                    release = json.loads(subprocess.check_output(['gh', 'api',
-                        f"repos/{specification['repository']}/releases/tags/{specification['tag']}"], text=True))
-                    available = {item['name']: item for item in release['assets']}
-                    for part in specification['parts']:
-                        if part['name'] not in available or available[part['name']]['size'] != part['bytes']:
-                            raise ValueError('Release is incomplete: ' + part['name'])
+                    # Public Release URLs require neither gh nor a GitHub account/token.
                     for index, part in enumerate(specification['parts']):
                         phase('downloading', completed=index, total=len(specification['parts']), asset=part['name'])
                         path = downloads / part['name']
-                        if not checked_file(path, part):
-                            run(['gh', 'release', 'download', specification['tag'], '--repo', specification['repository'],
-                                 '--pattern', part['name'], '--dir', downloads, '--clobber'])
-                        if not checked_file(path, part):
-                            raise ValueError('Downloaded file hash mismatch: ' + part['name'])
+                        download_asset(asset_url(specification, part['name']), path, part)
                     phase('assembling_verified_parts')
                     archive = assemble(downloads, specification)
                     phase('extracting')

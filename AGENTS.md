@@ -2,11 +2,11 @@
 
 用户已要求把这轮训练迁移到本 Linux 服务器，并让本端 Codex 下载后自动继续。
 当用户要求执行本交接时，完成实际下载、校验、配置和启动，不要只返回命令或再次询问是否开始。
-工作范围是此实验及用户提供的服务器资源；缺少账号登录、依赖安装权限或资源时报告具体阻塞。
+工作范围是此实验及用户提供的服务器资源；缺少依赖安装权限或资源时报告具体阻塞。
 
 ## 执行顺序
 
-1. 阅读根目录 README.md、release-manifest.json。检查本机 OS、GPU、Python 3.12、`gh auth status`、`tmux` 和持久磁盘空间。
+1. 阅读根目录 README.md、release-manifest.json。检查本机 OS、GPU、Python 3.12、`tmux`、网络和持久磁盘空间。仓库和 Release 已公开，下载无需 GitHub 账号、Token 或 `gh`；不要要求用户登录。
 2. 尊重用户指定工作目录/GPU；未指定 GPU 时默认物理 GPU 0。工作目录应在足够大的持久盘；不存在合适目录时只询问目录这一缺失信息。
 3. 检查已有 `gd-fight-train` tmux 会话、控制器状态及训练进程，禁止并发启动重复队列。
 4. 运行 `python3 tools/bootstrap.py --start --workdir <工作目录> --gpu <单个GPU>`。
